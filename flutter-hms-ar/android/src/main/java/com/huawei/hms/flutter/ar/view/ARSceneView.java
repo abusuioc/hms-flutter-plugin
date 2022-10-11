@@ -44,7 +44,7 @@ import org.json.JSONObject;
 import java.util.List;
 import java.util.Map;
 
-import io.flutter.embedding.engine.loader.FlutterLoader;
+import io.flutter.FlutterInjector;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -160,7 +160,7 @@ public class ARSceneView implements PlatformView, MethodCallHandler {
             float pointSize = (float) sceneConfig.getDouble("pointSize");
             String texturePath = sceneConfig.getString(TEXTURE_PATH).equals("null")
                 ? "texture.png"
-                : FlutterLoader.getInstance().getLookupKeyForAsset(sceneConfig.getString(TEXTURE_PATH));
+                : FlutterInjector.instance().flutterLoader().getLookupKeyForAsset(sceneConfig.getString(TEXTURE_PATH));
             boolean drawFace = sceneConfig.getBoolean("drawFace");
             faceSceneConfig.setDepthColor(depthColor);
             faceSceneConfig.setPointSize(pointSize);

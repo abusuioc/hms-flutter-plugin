@@ -23,7 +23,7 @@ import com.huawei.hms.plugin.ar.core.config.ColorRGBA;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import io.flutter.embedding.engine.loader.FlutterLoader;
+import io.flutter.FlutterInjector;
 
 public final class ParserUtil {
     private static final String TAG = ParserUtil.class.getSimpleName();
@@ -39,7 +39,7 @@ public final class ParserUtil {
 
     public static String getDefaultPath(JSONObject sceneConfig, String pathKey) {
         try {
-            return FlutterLoader.getInstance().getLookupKeyForAsset(sceneConfig.getString(pathKey));
+            return FlutterInjector.instance().flutterLoader().getLookupKeyForAsset(sceneConfig.getString(pathKey));
         } catch (JSONException e) {
             Log.d(TAG, "Error while parsing a path from scene config. Error: " + e.getMessage(), e.getCause());
         }
